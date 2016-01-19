@@ -65,7 +65,7 @@ def build_nested_dict(entries):
     for raw_path, value in entries.items():
         path = sanitize(raw_path)
         basename = os.path.basename(path)
-        subpaths = path.split('/')[1:]
+        subpaths = path.split(os.path.sep)[1:]
         subentry = result
         current = subentry
         for subpath in subpaths:

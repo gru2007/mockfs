@@ -191,7 +191,7 @@ class MockFS(object):
             return list(sorted(direntry.keys()))
         raise _OSError(errno.EINVAL, path)
 
-    def walk(self, path):
+    def walk(self, path, topdown=True, onerror=None, followlinks=False):
         """
         Walk a filesystem path
 
@@ -394,9 +394,9 @@ class MockFS(object):
     def _direntry(self, fspath):
         """Return the directory "dict" entry for a path"""
         path = self.abspath(fspath)
-        if path == '/':
+        if path == 'c:\\':
             return self._entries
-        elts = path.split('/')[1:]
+        elts = path.split(os.path.sep)[1:]
         current = self._entries
         retval = None
         for elt in elts:
